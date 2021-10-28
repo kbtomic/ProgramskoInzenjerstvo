@@ -72,7 +72,7 @@ body{
  .password {
 width: 100%;
  }
- .form-field-password::after {
+ /*.form-field-password::after {
      position: absolute;
      content: "Prikaži";
      color: white;
@@ -83,7 +83,7 @@ width: 100%;
      background-color: lightblue;
      border-radius: 5px;
 
- }
+ }*/
  .form-field-button {
     display: flex;
     justify-content: center;
@@ -138,4 +138,29 @@ width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display:flex;
     margin:5px;
+}
+/*.material-icons {
+    position: absolute;
+    margin: 47px 0 0 470px;
+    cursor: pointer;
+    color:lightgray;
+    <i class="material-icons">visibility</i>
+}*/
+#oko {
+    position: absolute;
+    size: 30px;
+    margin: 50px 0px 0px 476px;
+    color:lightgray;
+    width: 20px;
+    height: 18px;
+    cursor: pointer;
+}
+#zatvoreno-oko {
+    position: absolute;
+    margin: 50px 0px 0px 476px;
+    color:lightgray;
+    cursor: pointer;
+    width: 20px;
+    height: 18px;
+    display: none;
 }
