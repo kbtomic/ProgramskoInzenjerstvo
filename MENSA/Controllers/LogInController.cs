@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace MENSA.Controllers
 {
-    public class HomeController : Controller
+    public class LogInController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<LogInController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public LogInController(ILogger<LogInController> logger)
         {
             _logger = logger;
         }
@@ -23,10 +23,7 @@ namespace MENSA.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

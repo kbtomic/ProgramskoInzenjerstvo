@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login_styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>MENSA</title>
+</head>
+<body>
+    <header>
+        <article>
+            <div class="header-wrapper">
+                <h1 class="header">MENSA</h1>
+                <img class="header-logo" src="/assets/burger.png" alt="Logo">
+            </div>
+            <h1 class="header-caption">Studentska menza</h1>
+        </article>
+    </header>
+    <main class="content-wrapper">
+        <div>
+            <label class="prijava">Prijava</label>
+            <form class="form">
+                <div class="form-field">
+                    <label class="form-label">E-mail</label>
+                    <input class="form-input" type="text" name="username" placeholder="AAI@Edu:" required>
+                </div>
+                <div class="form-field-password">
+                    <label class="form-label">Lozinka</label>
+                    <input id="password" class="form-input" type="password" name="password" placeholder="Lozinka:" required>
+                    <img src="/assets/eye-ball.png" alt="Show password" id="oko">
+                    <img src="/assets/close-eye.png" alt="Hide password" id="zatvoreno-oko">
+                </div>
+                <div class="form-field-button">
+                    <button class="form-button" type="submit" onclick="window.location.href='/SelectMenza'">Prijavi se</button>
+                </div>
+                <div class="form-field-checkbox">
+                    <input type="checkbox">Zapamti me
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="/js/login-screen.js"></script>
+</body>
+</html>
