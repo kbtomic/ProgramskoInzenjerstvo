@@ -1,4 +1,5 @@
 ﻿using MENSA.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace MENSA.Data
 {
     //DbContext nam sluzi za komunikaciju sa bazon i kako bi mogli slat podatke u bazu
     // da bi koristili DbContext to moramo naslijediti od EntityFrameworkCore (using Microsoft.EntityFrameworkCore;)
-
-    public class ApplicationDbContext : DbContext
+    // tj posto koristimo Identyty onda IdentityDbContext (u njemu se nalazi i DbContext)
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) //konstruktor
         {

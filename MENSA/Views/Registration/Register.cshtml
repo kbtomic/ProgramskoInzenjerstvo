@@ -1,5 +1,4 @@
-﻿@model MENSA.ViewModels.LogInViewModel
-
+﻿@model MENSA.ViewModels.RegisterViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,26 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/login_styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <title>MENSA</title>
+    <title>Registration</title>
 </head>
 <body>
-    <header>
-        <article>
-            <div class="header-wrapper">
-                <h1 class="header">MENSA</h1>
-                <img class="header-logo" src="/assets/burger.png" alt="Logo">
-            </div>
-            <h1 class="header-caption">Studentska menza</h1>
-        </article>
-    </header>
     <main class="content-wrapper">
         <div>
-            <label class="prijava">Prijava</label>
-            <form class="form" method="post" asp-action="LogIn"> @*postat ce rezultate u funkciju LogIn unutar loginController*@
+            <label class="prijava">Registracija</label>
+            <form class="form" method="post" asp-action="Register">
+                @*postat ce rezultate u funkciju LogIn unutar loginController*@
+                <div asp-validation-summary="ModelOnly"></div>
                 <div class="form-field">
                     <label class="form-label">E-mail</label>
-                    <input asp-for="Email" class="form-input"  type="text" name="Email" placeholder="AAI@Edu:" required>
-                    <span asp-validation-for="Email" ></span>
+                    <input asp-for="Email" class="form-input" type="text" name="Email" placeholder="AAI@Edu:" required>
+                    <span asp-validation-for="Email"></span>
                 </div>
                 <div class="form-field-password">
                     <label class="form-label">Lozinka</label>
@@ -38,12 +30,8 @@
                     <span asp-validation-for="Password"></span>
                 </div>
                 <div class="form-field-button">
-                    <button class="form-button" type="submit" @*onclick="window.location.href='/SelectMenza'"*@>Prijavi se</button>
-                </div>
-                <div class="form-field-checkbox">
-                    <input asp-for="RememberMe" type="checkbox">Zapamti me
-                </div>
-                <div asp-validation-summary="ModelOnly"></div>
+                    <button class="form-button" type="submit" @*onclick="window.location.href='/SelectMenza'"*@>Register</button>
+                </div>    
             </form>
         </div>
     </main>
