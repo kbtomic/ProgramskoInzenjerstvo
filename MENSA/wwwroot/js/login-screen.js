@@ -34,3 +34,8 @@ function ShowPassword()
         hidePassword.style.display = "inline";
     }
 };
+let invalidEmail = document.getElementById("e-mail-validation");
+//invalidEmail.innerHTML = "Invalid E-mail!"
+
+let validation = document.getElementById("validation");
+validation.innerHTML = "Invalid Login attempt!"

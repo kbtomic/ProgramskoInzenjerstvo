@@ -20,22 +20,20 @@
         </div>
    @if (signInManager.IsSignedIn(User))@*@User.Identity.Name triba dodat *@
     {
-       <div>
-           <label>@User.Identity.Name</label>
-       </div>
-        <div class="user-wrapper">
-            <div class="dropdown">
-                 <img class="header-user" src="/assets/user.png" alt="User settings">
-                 <div class="dropdown-menu">
-                     <div class="logout-wrap">
-                         <img class="logout" src="/assets/logout2.png" alt="Log out">
-                     </div>
-                     <form method="post" asp-action="Logout" asp-controller="LogIn">
-                         <button type="submit" style="width:auto">Odjavi se</button>
-                     </form>
-                 </div>
+    <div class="user-wrapper">
+        <div class="user-id">@User.Identity.Name</div>
+        <div class="dropdown">
+            <img class="header-user" src="/assets/user.png" alt="User settings">
+            <div class="dropdown-menu">
+                <div class="logout-wrap">
+                    <img class="logout" src="/assets/logout2.png" alt="Log out">
+                </div>
+                <form method="post" asp-action="Logout" asp-controller="LogIn">
+                    <button type="submit" style="width:auto" class="login-button">Odjavi se</button>
+                </form>
             </div>
         </div>
+    </div>
     }
     </header>
         <main>

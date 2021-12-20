@@ -88,6 +88,7 @@ width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border:none;
  }
  .form-field-checkbox {
     display: flex;
@@ -99,6 +100,8 @@ width: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 13px;
     padding: 5px;
+    border:none;
+    border-color:white;
  }
 .form-label {
     border: none;
@@ -157,3 +160,19 @@ width: 100%;
     height: 18px;
     display: none;
 }
+#e-mail-validation, #password-validation, #validation{
+    color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    border: 2px solid white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: lightblue !important;
+    -webkit-text-fill-color: gray !important;
+    -webkit-box-shadow: 0 0 0 30px lightblue inset !important;
+}
+
