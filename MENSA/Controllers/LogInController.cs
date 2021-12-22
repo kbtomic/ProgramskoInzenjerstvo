@@ -37,7 +37,10 @@ namespace MENSA.Controllers
         
         public IActionResult Index()
         {
-            
+            if (signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "SelectMenza");
+            }
 
             return View();
         }
