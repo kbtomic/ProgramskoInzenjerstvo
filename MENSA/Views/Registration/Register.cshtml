@@ -6,17 +6,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login_styles.css">
+    <link href="~/css/register_styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Registration</title>
 </head>
 <body>
+    <header>
+        <article>
+            <div class="header-wrapper">
+                <h1 class="header">MENSA</h1>
+                <img class="header-logo" src="/assets/burger.png" alt="Logo">
+            </div>
+            <h1 class="header-caption">Studentska menza</h1>
+        </article>
+    </header>
     <main class="content-wrapper">
-        <div>
+        <div class="main-wrapper">
             <label class="prijava">Registracija</label>
             <form class="form" method="post" asp-action="Register">
                 @*postat ce rezultate u funkciju LogIn unutar loginController*@
                 <div asp-validation-summary="ModelOnly"></div>
+                <div class="dropdown-korisnik">
+                    <button onclick="myFunction()" class="dropbtn">Tip korisnika</button>
+                    <select id="myDropdown" class="dropdown-content">
+                        <option class="option">Student</option>
+                        <option class="option">Zaposlenik</option>
+                    </select>
+                </div>
                 <div class="form-field">
                     <label class="form-label">E-mail</label>
                     <input asp-for="Email" class="form-input" type="text" name="Email" placeholder="AAI@Edu:" required>
@@ -31,10 +47,11 @@
                 </div>
                 <div class="form-field-button">
                     <button class="form-button" type="submit" @*onclick="window.location.href='/SelectMenza'"*@>Register</button>
-                </div>    
+                </div>
             </form>
         </div>
     </main>
     <script src="/js/login-screen.js"></script>
+    <script src="~/js/admin-menu.js"></script>
 </body>
 </html>

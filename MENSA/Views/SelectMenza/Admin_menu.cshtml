@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/admin_menu_styles.css" />
+    <title>MENSA</title>
+</head>
+<body>
+    <header class="header">
+        <div class="title-logo">
+            <h1 class="title">MENSA</h1>
+            <img class="header-logo" src="/assets/burger.png" alt="Logo" />
+        </div>
+        <div class="user-wrapper">
+            <div class="user-id">@User.Identity.Name</div>
+            <div class="dropdown">
+                <img class="header-user" src="/assets/user.png" alt="User settings" />
+                <div class="dropdown-menu">
+                    <div class="logout-wrap">
+                        <img class="logout" src="/assets/logout2.png" alt="Log out" />
+                    </div>
+                    <button type="submit" style="width: auto" class="login-button">
+                        Odjavi se
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="dropdown-menza">
+        <button onclick="myFunction()" class="dropbtn">Izaberi menzu</button>
+        <select id="myDropdown" class="dropdown-content">
+            <option class="option">FESB-STOP</option>
+            <option class="option">FESB</option>
+            <option class="option">Ekonomski Fakultet</option>
+            <option class="option">Kampus</option>
+            <option class="option">Medicinski Fakultet</option>
+            <option class="option">Gradevinski Fakultet</option>
+            <option class="option">Index</option>
+            <option class="option">Spinut</option>
+        </select>
+    </div>
+    <form class="form">
+        <input type="text" class="form-jelo" placeholder="Naziv jela">
+        <input type="text" class="form-jelo" placeholder="Cijena jela">
+        <input type="text" class="form-jelo" placeholder="Path do slike">
+        <input type="submit" class="submit" value="Unesi">
+    </form>
+    <script src="/js/admin-menu.js"></script>
+</body>
+</html>

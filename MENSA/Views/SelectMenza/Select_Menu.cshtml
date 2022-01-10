@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lagn="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/select_menu_styles.css">
+    <title>MENSA</title>
+</head>
+<body>
+
+    <header class="header">
+        <div class="title-logo">
+            <h1 class="title">MENSA</h1>
+            <img class="header-logo" src="/assets/burger.png" alt="Logo">
+        </div>
+        <div class="user-wrapper">
+            <div class="dropdown">
+                <img class="header-user" src="/assets/user.png" alt="User settings">
+                <div class="dropdown-menu">
+                    <div class="logout-wrap">
+                        <img class="logout" src="/assets/logout2.png" alt="Log out">
+                    </div>
+                    <form method="post" asp-action="Logout" asp-controller="LogIn">
+                        <button type="submit" style="width:auto" class="login-button">Odjavi se</button>
+                    </form>
+                </div>
+            </div>
+    </header>
+    <main>
+        <article class="article-wrapper">
+            <h1 class="article-title">Dnevni jelovnik menze</h1>
+        </article>
+        <div class=main-div>
+            <div class="menu-wrapper">
+
+                <div class="box lightgray">
+                    <h2>Dnevna ponuda</h2>
+                    <h3 class="menu1"> MENU 1</h3>
+                    <ul>
+                        <li>Bolognese</li>
+                        <li>Mađarica</li>
+                        <li>Sokić</li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+            <div class="list-wrapper">
+                <div class="box lightblue">
+                    <h3>Pomfrit</h3>
+
+                    <img class="article-img" src="/assets/pomfrit.jpg" alt="4 kn">
+                    <p>4 kn</p>
+                </div>
+                <div class="box lightblue">
+                    <h3>Bolognese</h3>
+
+                    <img class="article-img" src="/assets/bolognese.jfif" alt="6 kn">
+                    <p>6 kn</p>
+                </div>
+                <div class="box lightblue">
+                    <h3>Pizza</h3>
+
+                    <img class="article-img" src="/assets/pizza.jpg" alt="5 kn">
+                    <p>5 kn</p>
+                </div>
+            </div>
+            <div class="box lightgray">
+                <h2> Radno vrijeme menze </h2>
+                <p>Ponedjeljak - Petak : 07-21</p>
+                <p>Subota -Nedjelja : 07-16</p>
+                <p>Kontakt broj : xxxxxxxxxx</p>
+                <img class="article-kosarica" src="/assets/kosarica.png" alt="Pregled košarice">
+                <p class="pregled">Pregled košarice</p>
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </main>
+
+    <script src="~/js/select-menza-screen.js"></script>
+</body>
+
+
+</html>

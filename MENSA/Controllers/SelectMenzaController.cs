@@ -19,7 +19,19 @@ namespace MENSA.Controllers
             return View();
         }
 
-       
+        public IActionResult Admin_menu()
+        {
+
+            return View();
+        }
+
+        public IActionResult Select_menu()
+        {
+
+            return View();
+        }
+
+
 
     }
 }
