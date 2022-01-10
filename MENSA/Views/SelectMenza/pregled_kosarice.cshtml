@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/kosarica-styles.css" />
+    <title>Košarica</title>
+</head>
+<body>
+
+    <header class="header">
+        <div class="title-logo">
+            <h1 class="title">MENSA</h1>
+            <img class="header-logo" src="/assets/burger.png" alt="Logo" />
+        </div>
+        @if (signInManager.IsSignedIn(User))@*@User.Identity.Name triba dodat *@
+        {
+            <div class="user-wrapper">
+                <div class="user-id">@User.Identity.Name</div>
+                <div class="dropdown">
+                    <img class="header-user"
+                         src="/assets/user.png"
+                         alt="User settings" />
+                    <div class="dropdown-menu">
+                        <div class="logout-wrap">
+                            <img class="logout" src="assets/logout2.png" alt="Log out" />
+                        </div>
+                        <form method="post" asp-action="Logout" asp-controller="LogIn">
+                            <button type="submit" style="width: auto" class="login-button">
+                                Odjavi se
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </header>
+    <h2 class="naslov">PREGLED TVOJE KOŠARICE</h2>
+    <div class="cart-container">
+        <div id="table_id">
+            <div class="table-header">
+                <p class="table-naslovni_redak"><b>PROIZVOD</b></p>
+                <p class="table-naslovni_redak"><b>CIJENA</b></p>
+                <p class="table-naslovni_redak kolicina"><b>KOLIČINA</b></p>
+            </div>
+            <div id="table-body">
+                <div class="redak-tablice">
+                    <p>Pomfrit</p>
+                    <p>2,35 kn</p>
+                    <p class="button-za-uvecavanje">
+                        <!-- <button id="minus">−</button>
+                        <input type="text" value="0" id="input"name="input" class="input" />
+                        <button id="plus">+</button>
+                         -->
+                        <button class="button_plus" onclick="smanjivanje()">-</button>
+                        <input type="text" id="input" value="0" class="box">
+                        <button class="button_plus" onclick="povecanje()">+</button>
+                        <!-- <button id="minus" onclick="lala()">-</button>
+                        <span id="numberPlace">0</span>
+                        <button id="plus" onclick="lala()" >+</button>   -->
+
+
+
+                    </p>
+                    </p>
+                    <p>
+                        <button class="button-1"
+                                id="ukloni"
+                                onclick="SomeDeleteRowFunction(this)">
+                            UKLONI
+                        </button>
+                    </p>
+                </div>
+                <div class="redak-tablice">
+                    <p>Riža</p>
+                    <p>3,75 kn</p>
+                    <p class="button-za-uvecavanje">
+                        <!-- <button id="minus">−</button>
+                         <input type="text" value="0" id="input"name="input" class="input" />
+                         <button id="plus">+</button>
+                        -->
+                        <button class="button_plus" onclick="smanjivanje()">-</button>
+                        <input type="text" id="input" value="0" class="box">
+                        <button class="button_plus" onclick="povecanje()">+</button>
+                    </p>
+                    </p>
+
+                    <p>
+                        <button class="button-1"
+                                id="ukloni"
+                                onclick="SomeDeleteRowFunction(this)">
+                            UKLONI
+                        </button>
+                    </p>
+                </div>
+                <div class="redak-tablice">
+                    <p>Mandarina</p>
+                    <p>1,75 kn</p>
+                    <p class="button-za-uvecavanje">
+                        <!-- <button id="minuss">−</button>
+                        <input type="text" value="0" id="input" name="input" class="input" />
+                        <button id="pluss">+</button> -->
+                        <button class="button_plus" onclick="smanjivanje()">-</button>
+                        <input type="text" id="input" value="0" class="box">
+                        <button class="button_plus" onclick="povecanje()">+</button>
+
+
+                    </p>
+                    </p>
+
+                    <p>
+                        <button class="button-1"
+                                id="ukloni"
+                                onclick="SomeDeleteRowFunction(this)">
+                            UKLONI
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="cart-container-bottom">
+            <div class="ime-menze">
+                <p>Menza-Građevinski fakultet</p>
+            </div>
+            <div class="cart-total">
+                <label>Ukupni račun:&nbsp </label>
+                <!-- <p class="vrijednost-računa">0 kn</p> -->
+
+                <input type="text" id="total" value="0" disabled="" class="box">
+
+            </div>
+        </div>
+    </div>
+    <button class="button-2" type="button">ZAKLJUČI NARUDŽBU</button>
+</body>
+<script src="/js/kosarica-scripts.js"></script>
+
+</html>

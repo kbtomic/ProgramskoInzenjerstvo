@@ -31,6 +31,11 @@ namespace MENSA.Controllers
             return View();
         }
 
+        public IActionResult pregled_kosarice()
+        {
+
+            return View();
+        }
 
 
     }
