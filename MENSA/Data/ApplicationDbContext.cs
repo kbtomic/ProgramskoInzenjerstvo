@@ -20,5 +20,12 @@ namespace MENSA.Data
 
         public DbSet<Student> Student { get; set; } //nadodajemo ovo kako bi mogli nas model ubaciti u bazu
                                                     // da mos koristit model Student moras koristit using MENSA.Models;
+
+        public DbSet<Zaposlenik> Zaposlenik { get; set; }
+        public DbSet<Menza> Menza { get; set; }
+        public DbSet<Menu> Menu { get; set; }
+        public DbSet<Zaposlenik_Menza> Zaposlenik_Menza { get; set; }
+        public DbSet<Narudzba_Menu> Narudzba_Menu { get; set; }
+        public DbSet<Menza_Menu> Menza_Menu { get; set; }
     }
 }
