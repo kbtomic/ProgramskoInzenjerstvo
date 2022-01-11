@@ -14,13 +14,13 @@ using System.Threading.Tasks;
 
 namespace MENSA.Controllers
 {
-    public class RegistrationController : Controller
+    public class AdminController : Controller
     {
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
 
 
-        public RegistrationController(SignInManager<IdentityUser> signInManager,
+        public AdminController(SignInManager<IdentityUser> signInManager,
                                     UserManager<IdentityUser> userManager)
         {
             this.signInManager = signInManager;
@@ -55,6 +55,12 @@ namespace MENSA.Controllers
             return View(model);
         }
 
+
+        public IActionResult Admin_menu()
+        {
+
+            return View();
+        }
 
     }
 }
