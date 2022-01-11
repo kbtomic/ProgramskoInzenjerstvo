@@ -14,6 +14,7 @@ namespace MENSA.Models
         public string Name { get; set; }
         public string Price { get; set; }
         public bool Availability { get; set; }
+        public string PicturePath { get; set; }
 
     }
 }

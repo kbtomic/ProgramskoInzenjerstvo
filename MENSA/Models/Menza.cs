@@ -13,6 +13,7 @@ namespace MENSA.Models
 
         public string Name { get; set; }
         public DateTime WorkingHours { get; set; }
+        public string PicturePath { get; set; }
 
         public ICollection<Narudzba> Narudzba { get; set; }
     }
