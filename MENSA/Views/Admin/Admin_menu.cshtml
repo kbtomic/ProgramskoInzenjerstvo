@@ -1,4 +1,4 @@
-﻿@model Menu
+﻿@model MENSA.ViewModels.AddMenuViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,10 +31,10 @@
         </div>
     </header>
     
-    <form class="form" method="post">
+    <form class="form" method="post" asp-action="Admin_menu">
         <div class="dropdown-menza">
             <button onclick="myFunction()" class="dropbtn" type="button">Izaberi menzu</button>
-            <select id="myDropdown" class="dropdown-content">
+            <select asp-for="MenzaName"id="myDropdown" class="dropdown-content">
                 <option class="option">FESB-STOP</option>
                 <option class="option">FESB</option>
                 <option class="option">Ekonomski Fakultet</option>
@@ -45,9 +45,9 @@
                 <option class="option">Spinut</option>
             </select>
         </div>
-        <input type="text" class="form-jelo" placeholder="Naziv jela">
-        <input type="text" class="form-jelo" placeholder="Cijena jela">
-        <input type="text" class="form-jelo" placeholder="Path do slike">
+        <input asp-for="MealName" type="text" class="form-jelo" placeholder="Naziv jela">
+        <input asp-for="Price" type="text" class="form-jelo" placeholder="Cijena jela">
+        <input asp-for="PicturePath" type="text" class="form-jelo" placeholder="Path do slike">
         <input type="submit" class="submit" value="Unesi">
     </form>
     <script src="/js/admin-menu.js"></script>

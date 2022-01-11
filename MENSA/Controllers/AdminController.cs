@@ -62,5 +62,11 @@ namespace MENSA.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Admin_menu(AddMenuViewModel model)
+        {
+
+            return View();
+        }
     }
 }
