@@ -71,7 +71,7 @@
 }
 
 .article-title {
-    font-size: 90px;
+    font-size: 70px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
     margin: 10px;
@@ -88,11 +88,16 @@
     display: flex;
 }
 
+.menu-wrapper ul li {
+    font-size: 15px;
+}
+
 .menu-wrapper {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #00003E;
     font-size: 20px;
     margin: auto;
+    padding-bottom: 5px;
 }
 
 .list-wrapper {
@@ -122,11 +127,29 @@
     border-radius: 10px;
 }
 
+.buying {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 2px solid gray;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: 1s;
+}
+
+    .buying:hover {
+        background: gray;
+    }
+
 .box {
     padding: 10px;
-    border: 8px solid #00003E;
+    border: 8px solid gray;
     border-radius: 20px;
     text-align: justify;
+    margin-left: 5%;
 }
 
 .menu1 {
@@ -143,6 +166,9 @@
 
 .lightgray {
     background-color: lightgray;
+    height: 300px;
+    width: 180px;
+    margin-right: 5%;
 }
 
 .dropdown {
@@ -172,7 +198,6 @@
     height: 15px;
     width: 15px;
     color: white;
-    cursor: pointer;
 }
 
 .logout-wrap {
@@ -180,7 +205,6 @@
     position: absolute;
     margin: 3px -20px;
 }
-
 .login-button {
     border: none;
     display: flex;
