@@ -11,7 +11,7 @@ namespace MENSA.Data
     //DbContext nam sluzi za komunikaciju sa bazon i kako bi mogli slat podatke u bazu
     // da bi koristili DbContext to moramo naslijediti od EntityFrameworkCore (using Microsoft.EntityFrameworkCore;)
     // tj posto koristimo Identyty onda IdentityDbContext (u njemu se nalazi i DbContext)
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) //konstruktor
         {

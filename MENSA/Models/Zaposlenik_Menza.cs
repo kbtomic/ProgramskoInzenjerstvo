@@ -15,8 +15,8 @@ namespace MENSA.Models
         public int MenzaId { get; set; }
         public Menza Menza { get; set; }
 
-        [ForeignKey("Zaposlenik")]
-        public int ZaposlenikId { get; set; }
-        public Zaposlenik Zaposlenik { get; set; }
+        public string ZaposlenikId { get; set; }
+        [ForeignKey("ZaposlenikId")]
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

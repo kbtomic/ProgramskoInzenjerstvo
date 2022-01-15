@@ -4,14 +4,16 @@ using MENSA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MENSA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220115192118_addedAppUserFKToZaposlenikMenza")]
+    partial class addedAppUserFKToZaposlenikMenza
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,14 +156,14 @@ namespace MENSA.Migrations
                     b.Property<int>("MenzaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
 
                     b.HasKey("Number");
 
                     b.HasIndex("MenzaId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Narudzba");
                 });
@@ -405,13 +407,15 @@ namespace MENSA.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MENSA.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("MENSA.Models.Student", "Student")
                         .WithMany("Narudzba")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("ApplicationUser");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Menza");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("MENSA.Models.Narudzba_Menu", b =>
@@ -501,12 +505,12 @@ namespace MENSA.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MENSA.Models.ApplicationUser", b =>
+            modelBuilder.Entity("MENSA.Models.Menza", b =>
                 {
                     b.Navigation("Narudzba");
                 });
 
-            modelBuilder.Entity("MENSA.Models.Menza", b =>
+            modelBuilder.Entity("MENSA.Models.Student", b =>
                 {
                     b.Navigation("Narudzba");
                 });

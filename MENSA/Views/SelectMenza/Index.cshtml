@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<IdentityUser> signInManager;
-
+@inject SignInManager<ApplicationUser> signInManager;
+@model IEnumerable<MENSA.Models.Menza>
 
 
 <!DOCTYPE html>
@@ -42,7 +42,28 @@
                 <p class="article-description">Odaberi menzu čiju ponudu želiš vidjeti!</p>
             </article>
             <div class="list-wrapper">
-                <a href="" class="box lightblue">
+                @foreach (var obj in Model)
+                {
+                    if (User.IsInRole("Student"))
+                    {
+                        <a asp-action="Select_menu" asp-route-id="@obj.Id" class="box lightblue">
+                        <h3>@obj.Name</h3>
+                        <img class="canteen-img" src="@("/assets/" +obj.PicturePath)" alt="FEB menza">
+                        </a>
+                    }
+                    else
+                    { 
+                        <a asp-action="pregled_kosarice" asp-route-id="@obj.Id" class="box lightblue">
+                        <h3>@obj.Name</h3>
+                        <img class="canteen-img" src="@("/assets/" +obj.PicturePath)" alt="FEB menza">
+                        </a>
+                    }
+                    
+                    
+                    
+                }
+
+                @*<a href="" class="box lightblue">
                     <h3>FESB - STOP</h3>
                     <img class="canteen-img" src="/assets/fesb-donja.jpg" alt="FESB STOP menza">
                 </a>
@@ -73,7 +94,7 @@
                 <a href="" class="box lightblue">
                     <h3>Spinut</h3>
                     <img class="canteen-img" src="/assets/spinut.jpg" alt="Spinut menza">
-                </a>
+                </a>*@
             </div>
         </main>
         <script src="/js/select-menza-screen.js"></script>

@@ -1,4 +1,5 @@
 using MENSA.Data;
+using MENSA.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +31,7 @@ namespace MENSA
             options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<IdentityOptions>(options =>
