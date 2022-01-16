@@ -37,9 +37,13 @@ namespace MENSA.Controllers
         
         public IActionResult Index()
         {
-            if (signInManager.IsSignedIn(User))
+            if (signInManager.IsSignedIn(User) && (User.IsInRole("Student") || User.IsInRole("Zaposlenik")))
             {
                 return RedirectToAction("Index", "SelectMenza");
+            }
+            else if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Admin_functionalities", "Admin");
             }
 
             return View();
@@ -54,7 +58,14 @@ namespace MENSA.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "SelectMenza");
+                    if ( User.IsInRole("Student") || User.IsInRole("Zaposlenik"))
+                    {
+                        return RedirectToAction("Index", "SelectMenza");
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("Admin_functionalities", "Admin");
+                    }
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
