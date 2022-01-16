@@ -43,6 +43,7 @@ namespace MENSA.Controllers
 
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, model.userRole);
                     return View();
                 }
 

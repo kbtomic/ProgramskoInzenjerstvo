@@ -28,7 +28,7 @@
                 <div asp-validation-summary="ModelOnly"></div>
                 <div class="dropdown-korisnik">
                     <button onclick="myFunction()" class="dropbtn" type="button">Tip korisnika</button>
-                    <select id="myDropdown" class="dropdown-content">
+                    <select asp-for="userRole" id="myDropdown" class="dropdown-content">
                         <option class="option">Student</option>
                         <option class="option">Zaposlenik</option>
                     </select>
