@@ -16,6 +16,7 @@ namespace MENSA.Controllers
 {
     public class AdminController : Controller
     {
+     
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
         private readonly ApplicationDbContext _db;
@@ -23,6 +24,7 @@ namespace MENSA.Controllers
 
         public AdminController(SignInManager<IdentityUser> signInManager,
                                     UserManager<IdentityUser> userManager, ApplicationDbContext db)
+
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
@@ -40,13 +42,14 @@ namespace MENSA.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 
 
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(user, model.userRole);
                     return View();
                 }
 

@@ -16,8 +16,8 @@ namespace MENSA.Controllers
 {
     public class LogInController : Controller
     {
-        private readonly SignInManager<IdentityUser> signInManager;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
 
         //private readonly ILogger<LogInController> _logger;
@@ -27,8 +27,8 @@ namespace MENSA.Controllers
         //    _logger = logger;
         //}
 
-        public LogInController(SignInManager<IdentityUser> signInManager, 
-                                    UserManager<IdentityUser> userManager)
+        public LogInController(SignInManager<ApplicationUser> signInManager, 
+                                    UserManager<ApplicationUser> userManager)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;

@@ -17,7 +17,7 @@ namespace MENSA.Models
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public ICollection<Narudzba> Narudzba { get; set; } //dodano kako bi fukcionirao kao foreign key
+        //public ICollection<Narudzba> Narudzba { get; set; } //dodano kako bi fukcionirao kao foreign key
 
     }
 }
