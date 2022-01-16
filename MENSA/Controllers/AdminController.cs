@@ -18,13 +18,15 @@ namespace MENSA.Controllers
     {
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly UserManager<IdentityUser> userManager;
+        private readonly ApplicationDbContext _db;
 
 
         public AdminController(SignInManager<IdentityUser> signInManager,
-                                    UserManager<IdentityUser> userManager)
+                                    UserManager<IdentityUser> userManager, ApplicationDbContext db)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
+            _db = db;
         }
 
         [HttpGet]
@@ -65,6 +67,21 @@ namespace MENSA.Controllers
         [HttpPost]
         public IActionResult Admin_menu(AddMenuViewModel model)
         {
+            var menu = new Menu { Name = model.MealName, PicturePath = model.PicturePath, Price = model.Price, Availability = true };
+            _db.Menu.Add(menu);
+            _db.SaveChanges();
+
+            var menuString = model.MealName;
+            var menuParameter = new SqlParameter("@Name", menuString);
+            var menuID = _db.Menu.FromSqlRaw("SELECT Id FROM Menu WHERE Name=@Name", menuParameter).FirstOrDefault(); //ID menua
+
+            var menzaString = model.MenzaName;
+            var menzaParameter = new SqlParameter("@Name", menzaString);
+            var menzaID = _db.Menza.FromSqlRaw("SELECT Id FROM Menza WHERE Name=@Name", menzaParameter).FirstOrDefault(); //ID menze
+
+            var obj = new Menza_Menu { MenuId = Convert.ToInt32(menuID), MenzaId = Convert.ToInt32(menzaID) };
+            _db.Menza_Menu.Add(obj);
+            _db.SaveChanges();
 
             return View();
         }
