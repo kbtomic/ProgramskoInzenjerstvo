@@ -17,13 +17,13 @@ namespace MENSA.Controllers
     public class AdminController : Controller
     {
      
-        private readonly SignInManager<IdentityUser> signInManager;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext _db;
 
 
-        public AdminController(SignInManager<IdentityUser> signInManager,
-                                    UserManager<IdentityUser> userManager, ApplicationDbContext db)
+        public AdminController(SignInManager<ApplicationUser> signInManager,
+                                    UserManager<ApplicationUser> userManager, ApplicationDbContext db)
 
         {
             this.signInManager = signInManager;
