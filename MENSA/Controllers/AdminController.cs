@@ -85,5 +85,11 @@ namespace MENSA.Controllers
 
             return View();
         }
+
+        public IActionResult Admin_functionalities()
+        {
+
+            return View();
+        }
     }
 }
