@@ -33,6 +33,8 @@ namespace MENSA
             services.AddIdentity<IdentityUser, IdentityRole>()
                    .AddEntityFrameworkStores<ApplicationDbContext>();
 
+                    
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 4;
