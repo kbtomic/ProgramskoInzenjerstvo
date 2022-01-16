@@ -55,14 +55,21 @@ namespace MENSA.Controllers
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                
+
 
                 if (result.Succeeded)
                 {
-                    if ( User.IsInRole("Student") || User.IsInRole("Zaposlenik"))
+                    var user = await signInManager.UserManager.FindByEmailAsync(model.Email);
+                    IList<string> roles = await signInManager.UserManager.GetRolesAsync(user);
+
+                    
+
+                    if ( String.Equals(roles[0],"Student") || String.Equals(roles[0], "Zaposlenik"))
                     {
                         return RedirectToAction("Index", "SelectMenza");
                     }
-                    else if (User.IsInRole("Admin"))
+                    else if (String.Equals(roles[0], "Admin"))
                     {
                         return RedirectToAction("Admin_functionalities", "Admin");
                     }
