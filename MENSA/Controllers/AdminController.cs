@@ -75,18 +75,24 @@ namespace MENSA.Controllers
             var menu = new Menu { Name = model.MealName, PicturePath = model.PicturePath, Price = model.Price, Availability = true };
             _db.Menu.Add(menu);
             _db.SaveChanges();
+            
 
             var menuString = model.MealName;
             var menuParameter = new SqlParameter("@Name", menuString);
-            var menuID = _db.Menu.FromSqlRaw("SELECT Id FROM Menu WHERE Name=@Name", menuParameter).FirstOrDefault(); //ID menua
+            var menuToAdd = _db.Menu.FromSqlRaw("SELECT * FROM Menu WHERE Name=@Name", menuParameter).FirstOrDefault(); //ID menua
 
             var menzaString = model.MenzaName;
             var menzaParameter = new SqlParameter("@Name", menzaString);
-            var menzaID = _db.Menza.FromSqlRaw("SELECT Id FROM Menza WHERE Name=@Name", menzaParameter).FirstOrDefault(); //ID menze
+            var menzaToAdd = _db.Menza.FromSqlRaw("SELECT * FROM Menza WHERE Name=@Name", menzaParameter).FirstOrDefault(); //ID menze
 
-            var obj = new Menza_Menu { MenuId = Convert.ToInt32(menuID), MenzaId = Convert.ToInt32(menzaID) };
-            _db.Menza_Menu.Add(obj);
-            _db.SaveChanges();
+            var obj = new Menza_Menu { Menu = menuToAdd, Menza = menzaToAdd, MenuId=menuToAdd.Id, MenzaId=menzaToAdd.Id };
+            var commandText = "Insert Into [Menza_Menu](MenzaId, MenuId)values(@menzaId, @menuId)";
+            var menzaIdparamater = new SqlParameter("@menzaId", obj.MenzaId);
+            var menuIdparamater = new SqlParameter("@menuId", obj.MenuId);
+
+            _db.Database.ExecuteSqlRaw(commandText, menzaIdparamater, menuIdparamater);
+            //_db.Menza_Menu.Add(obj);
+            //_db.SaveChanges();
 
             return View();
         }
