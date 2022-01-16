@@ -43,6 +43,8 @@ namespace MENSA.Controllers
                 var user = new IdentityUser { UserName = model.Email, Email = model.Email };
                 var result = await userManager.CreateAsync(user, model.Password);
 
+                
+
                 if (result.Succeeded)
                 {
                     return View();

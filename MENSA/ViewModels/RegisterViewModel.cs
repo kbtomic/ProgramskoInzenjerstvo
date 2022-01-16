@@ -8,6 +8,8 @@ namespace MENSA.ViewModels
 {
     public class RegisterViewModel
     {
+        public string userRole { get; set; }
+
         [Required]
         [EmailAddress]
         public string Email{ get; set; }
