@@ -112,7 +112,7 @@ main {
     left: 32%;
 }
 
-button {
+.buttoni {
     background-color: red;
     border-radius: 5px;
     color: white;
@@ -123,6 +123,8 @@ button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 450px;
     margin: 10px;
+    text-align: center;
 }
+
 
 
