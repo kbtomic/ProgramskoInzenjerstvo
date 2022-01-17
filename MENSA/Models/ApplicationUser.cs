@@ -9,6 +9,6 @@ namespace MENSA.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<Narudzba> Narudzba { get; set; }
-
+        public virtual ICollection<NewNarudzba> NewNarudzba { get; set; }
     }
 }
