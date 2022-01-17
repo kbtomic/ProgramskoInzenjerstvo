@@ -9,7 +9,7 @@ namespace MENSA.ViewModels
     {
         public string MenzaName { get; set; }
         public string MealName { get; set; }
-        public string Price { get; set; }
+        public float Price { get; set; }
         public string PicturePath { get; set; }
     }
 }

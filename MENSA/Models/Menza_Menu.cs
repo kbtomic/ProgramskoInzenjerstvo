@@ -17,5 +17,7 @@ namespace MENSA.Models
         [ForeignKey("Menza")]
         public int MenzaId { get; set; }
         public Menza Menza { get; set; }
+
+        public bool Availability { get; set; }
     }
 }

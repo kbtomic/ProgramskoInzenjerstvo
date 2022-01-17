@@ -72,7 +72,7 @@ namespace MENSA.Controllers
         [HttpPost]
         public IActionResult Admin_menu(AddMenuViewModel model)
         {
-            var menu = new Menu { Name = model.MealName, PicturePath = model.PicturePath, Price = model.Price, Availability = true };
+            var menu = new Menu { Name = model.MealName, PicturePath = model.PicturePath, Price = model.Price };
             _db.Menu.Add(menu);
             _db.SaveChanges();
             
@@ -85,7 +85,7 @@ namespace MENSA.Controllers
             var menzaParameter = new SqlParameter("@Name", menzaString);
             var menzaToAdd = _db.Menza.FromSqlRaw("SELECT * FROM Menza WHERE Name=@Name", menzaParameter).FirstOrDefault(); //ID menze
 
-            var obj = new Menza_Menu { Menu = menuToAdd, Menza = menzaToAdd, MenuId=menuToAdd.Id, MenzaId=menzaToAdd.Id };
+            var obj = new Menza_Menu { Menu = menuToAdd, Menza = menzaToAdd, MenuId=menuToAdd.Id, MenzaId=menzaToAdd.Id, Availability = true };
             var commandText = "Insert Into [Menza_Menu](MenzaId, MenuId)values(@menzaId, @menuId)";
             var menzaIdparamater = new SqlParameter("@menzaId", obj.MenzaId);
             var menuIdparamater = new SqlParameter("@menuId", obj.MenuId);

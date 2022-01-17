@@ -12,9 +12,15 @@ namespace MENSA.Models
         [Key]
         public int Id { get; set; }
 
-        public bool In_Preparation { get; set; }
+       
         public bool Ready { get; set; }
         public bool Delivered { get; set; }
+
+        public Menu Menu1 { get; set; }
+        public Menu Menu2 { get; set; }
+        public Menu Menu3 { get; set; }
+        public Menu Menu4 { get; set; }
+
 
         public string StudentId { get; set; }
         [ForeignKey("StudentId")]
