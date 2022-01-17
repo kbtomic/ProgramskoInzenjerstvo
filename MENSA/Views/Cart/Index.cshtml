@@ -50,8 +50,8 @@
                     foreach (var item in ViewBag.cart)
                     {
                      <div class="redak-tablice">
-                        <p>@item.Name</p>
-                        <p>@item.Price</p>
+                        <p>@item.Menu.Name</p>
+                        <p>@item.Menu.Price</p>
                         <p class="button-za-uvecavanje">
                             <button class="button_plus" onclick="smanjivanje()">-</button>
                             <input type="text" id="input" value="1" class="box">
@@ -61,7 +61,7 @@
                         </p>
 
                         <p>
-                            <a asp-action="Remove" asp-route-id="@item.Id" class="button-1" id="ukloni">
+                            <a asp-action="Remove" asp-route-id="@item.Menu.Id" class="button-1" id="ukloni">
                                 UKLONI
                             </a>
                         </p>

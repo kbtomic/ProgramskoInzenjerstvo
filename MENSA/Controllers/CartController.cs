@@ -1,6 +1,7 @@
 ﻿using MENSA.Data;
 using MENSA.Helpers;
 using MENSA.Models;
+using MENSA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,25 +22,28 @@ namespace MENSA.Controllers
 
         public IActionResult Index()
         {
-            var cart = SessionHelper.GetObjectFromJson<List<Menu>>(HttpContext.Session, "cart");
+            var cart = SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
-            //ViewBag.total = cart.Sum(item => item.Product.Price * item.Quantity);
+
+            //ViewBag.total = cart.Sum(item => item.Menu.Price * item.Quantity);
             return View();
         }
 
         public IActionResult Buy(int id)
         {
             Menu meal  = _db.Menu.Where(a => a.Id == id).FirstOrDefault();
+            MenuViewModel mealVM = new MenuViewModel();
+            mealVM.Menu = meal;
 
-            if (SessionHelper.GetObjectFromJson<List<Menu>>(HttpContext.Session, "cart") == null)
+            if (SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart") == null)
             {
-                List<Menu> cart = new List<Menu>();
-                cart.Add(meal);
+                List<MenuViewModel> cart = new List<MenuViewModel>();
+                cart.Add(mealVM);
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
             else
             {
-                List<Menu> cart = SessionHelper.GetObjectFromJson<List<Menu>>(HttpContext.Session, "cart");
+                List<MenuViewModel> cart = SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart");
                 int index = isExist(id.ToString());
                 if (index != -1)
                 {
@@ -47,17 +51,18 @@ namespace MENSA.Controllers
                 }
                 else
                 {
-                    cart.Add(meal);
+                    cart.Add(mealVM);
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-            return RedirectToAction("Select_Menu", "SelectMenza");
+            //return RedirectToAction("Select_Menu", "SelectMenza");
+            return RedirectToAction("Index");
         }
 
         
         public IActionResult Remove(string id)
         {
-            List<Menu> cart = SessionHelper.GetObjectFromJson<List<Menu>>(HttpContext.Session, "cart");
+            List<MenuViewModel> cart = SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart");
             int index = isExist(id);
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
@@ -66,10 +71,10 @@ namespace MENSA.Controllers
 
         private int isExist(string id)
         {
-            List<Menu> cart = SessionHelper.GetObjectFromJson<List<Menu>>(HttpContext.Session, "cart");
+            List<MenuViewModel> cart = SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; i++)
             {
-                if (cart[i].Id.ToString().Equals(id))
+                if (cart[i].Menu.Id.ToString().Equals(id))
                 {
                     return i;
                 }
