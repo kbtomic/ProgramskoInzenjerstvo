@@ -46,6 +46,7 @@ namespace MENSA
             });
 
             services.AddControllersWithViews();
+            services.AddSession();
         }
 
         private async Task CreateRoles(IServiceProvider serviceProvider)
@@ -84,7 +85,7 @@ namespace MENSA
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

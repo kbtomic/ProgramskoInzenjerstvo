@@ -59,7 +59,7 @@
 
                         <img class="article-img" src="@("/assets/"+@obj.PicturePath)" alt="6 kn">
                         <p>@obj.Price</p>
-                        <a href="" class="buying">BUY NOW</a>
+                        <a asp-controller="cart" asp-action="buy" asp-route-id="@obj.Id" class="buying">Add to cart</a>
                     </div>
                 }
 
@@ -86,18 +86,19 @@
             <a href="" class="buying">BUY NOW</a>
         </div>*@
             </div>
-            <div class="box lightgray">
-                <h2> Radno vrijeme menze </h2>
-                <p>Ponedjeljak - Petak : 07-21</p>
-                <p>Subota -Nedjelja : 07-16</p>
-                <p>Kontakt broj : xxxxxxxxxx</p>
-                <img class="article-kosarica" src="/assets/kosarica.png" alt="Pregled košarice">
-                <p class="pregled">Pregled košarice</p>
+            
+                <div class="box lightgray">
+                    <h2> Radno vrijeme menze </h2>
+                    <p>Ponedjeljak - Petak : 07-21</p>
+                    <p>Subota -Nedjelja : 07-16</p>
+                    <p>Kontakt broj : xxxxxxxxxx</p>
+                    <a asp-action="Index" asp-controller="Cart"><img class="article-kosarica" src="/assets/kosarica.png" alt="Pregled košarice"></a>
+                    <p class="pregled">Pregled košarice</p>
 
 
 
-            </div>
-
+                </div>
+            
         </div>
 
 

@@ -31,7 +31,7 @@ namespace MENSA.Controllers
         [HttpGet]
         public IActionResult Select_menu(int ID)
         {
-          
+            
 
             var menzaMeals = (from mm in _db.Menza_Menu
                               join me in _db.Menu on mm.MenuId equals me.Id
@@ -48,11 +48,7 @@ namespace MENSA.Controllers
             return View(menzaMeals);
         }
 
-        public IActionResult pregled_kosarice()
-        {
-
-            return View();
-        }
+        
 
         public IActionResult Orders(int ID)
         {

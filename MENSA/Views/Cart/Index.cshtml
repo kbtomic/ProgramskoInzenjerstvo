@@ -45,20 +45,39 @@
                 <p class="table-naslovni_redak kolicina"><b>KOLIČINA</b></p>
             </div>
             <div id="table-body">
-                <div class="redak-tablice">
+                @if (ViewBag.cart != null)
+                {
+                    foreach (var item in ViewBag.cart)
+                    {
+                     <div class="redak-tablice">
+                        <p>@item.Name</p>
+                        <p>@item.Price</p>
+                        <p class="button-za-uvecavanje">
+                            <button class="button_plus" onclick="smanjivanje()">-</button>
+                            <input type="text" id="input" value="1" class="box">
+                            <button class="button_plus" onclick="povecanje()">+</button>
+                        </p>
+                         <p>
+                        </p>
+
+                        <p>
+                            <a asp-action="Remove" asp-route-id="@item.Id" class="button-1" id="ukloni">
+                                UKLONI
+                            </a>
+                        </p>
+                    </div>
+                    }
+                }
+                @*<div class="redak-tablice">
                     <p>Pomfrit</p>
                     <p>2,35 kn</p>
                     <p class="button-za-uvecavanje">
-                        <!-- <button id="minus">−</button>
-                        <input type="text" value="0" id="input"name="input" class="input" />
-                        <button id="plus">+</button>
-                         -->
+                        
+
                         <button class="button_plus" onclick="smanjivanje()">-</button>
                         <input type="text" id="input" value="0" class="box">
                         <button class="button_plus" onclick="povecanje()">+</button>
-                        <!-- <button id="minus" onclick="lala()">-</button>
-                        <span id="numberPlace">0</span>
-                        <button id="plus" onclick="lala()" >+</button>   -->
+                       
 
 
 
@@ -76,10 +95,8 @@
                     <p>Riža</p>
                     <p>3,75 kn</p>
                     <p class="button-za-uvecavanje">
-                        <!-- <button id="minus">−</button>
-                         <input type="text" value="0" id="input"name="input" class="input" />
-                         <button id="plus">+</button>
-                        -->
+                       
+
                         <button class="button_plus" onclick="smanjivanje()">-</button>
                         <input type="text" id="input" value="0" class="box">
                         <button class="button_plus" onclick="povecanje()">+</button>
@@ -98,9 +115,7 @@
                     <p>Mandarina</p>
                     <p>1,75 kn</p>
                     <p class="button-za-uvecavanje">
-                        <!-- <button id="minuss">−</button>
-                        <input type="text" value="0" id="input" name="input" class="input" />
-                        <button id="pluss">+</button> -->
+                       
                         <button class="button_plus" onclick="smanjivanje()">-</button>
                         <input type="text" id="input" value="0" class="box">
                         <button class="button_plus" onclick="povecanje()">+</button>
@@ -116,7 +131,7 @@
                             UKLONI
                         </button>
                     </p>
-                </div>
+                </div>*@
             </div>
         </div>
         <div class="cart-container-bottom">
@@ -133,7 +148,9 @@
         </div>
     </div>
     <button class="button-2" type="button">ZAKLJUČI NARUDŽBU</button>
+
+    <script src="/js/kosarica-scripts.js"></script>
 </body>
-<script src="/js/kosarica-scripts.js"></script>
+
 
 </html>
