@@ -41,6 +41,16 @@ body {
     padding: 10px;
     cursor: pointer;
 }
+.login-button {
+    border: none;
+    display: flex;
+    padding-left: 35px;
+    padding-top: 1px;
+    background-color: #4294ff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    cursor: pointer;
+}
 .article-wrapper {
     display: flex;
     flex-direction: column;
@@ -218,6 +228,7 @@ body {
     height: 15px;
     width: 15px;
     color: white;
+    cursor: pointer;
 }
 .logout-wrap {
     display: inline;
