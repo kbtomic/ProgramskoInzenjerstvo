@@ -1,6 +1,8 @@
 ﻿using MENSA.Data;
+using MENSA.Helpers;
 using MENSA.Models;
 using MENSA.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,7 +33,9 @@ namespace MENSA.Controllers
         [HttpGet]
         public IActionResult Select_menu(int ID)
         {
-            
+            HttpContext.Session.SetInt32("currentMenzaId", ID);
+            var currentMenza = _db.Menza.Where(a => a.Id == ID).FirstOrDefault();
+            HttpContext.Session.SetString("currentMenzaName", currentMenza.Name);
 
             var menzaMeals = (from mm in _db.Menza_Menu
                               join me in _db.Menu on mm.MenuId equals me.Id
@@ -44,7 +48,7 @@ namespace MENSA.Controllers
                                   Price = me.Price
                               }).ToList();
 
-
+            
             return View(menzaMeals);
         }
 

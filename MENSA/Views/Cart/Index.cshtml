@@ -1,4 +1,5 @@
 ﻿@inject SignInManager<ApplicationUser> signInManager;
+@using Microsoft.AspNetCore.Http;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,105 +50,104 @@
                 {
                     foreach (var item in ViewBag.cart)
                     {
-                     <div class="redak-tablice">
-                        <p>@item.Menu.Name</p>
-                        <p>@item.Menu.Price</p>
-                        <p class="button-za-uvecavanje">
-                            <button class="button_plus" onclick="smanjivanje()">-</button>
-                            <input type="text" id="input" value="1" class="box">
-                            <button class="button_plus" onclick="povecanje()">+</button>
-                        </p>
-                         <p>
-                        </p>
+                        <div class="redak-tablice">
+                            <p>@item.Menu.Name</p>
+                            <p>@item.Menu.Price kn</p>
+                            <p class="button-za-uvecavanje">
+                                <button class="button_plus" onclick="smanjivanje()">-</button>
+                                <input type="text" id="input" value="@item.Quantity" class="box">
+                                <button class="button_plus" onclick="povecanje()">+</button>
+                            </p>
+                            <p>
+                            </p>
 
-                        <p>
-                            <a asp-action="Remove" asp-route-id="@item.Menu.Id" class="button-1" id="ukloni">
-                                UKLONI
-                            </a>
-                        </p>
-                    </div>
+                            <p>
+                                <a asp-action="Remove" asp-route-id="@item.Menu.Id" class="button-1" id="ukloni">
+                                    UKLONI
+                                </a>
+                            </p>
+                        </div>
                     }
                 }
                 @*<div class="redak-tablice">
-                    <p>Pomfrit</p>
-                    <p>2,35 kn</p>
-                    <p class="button-za-uvecavanje">
-                        
-
-                        <button class="button_plus" onclick="smanjivanje()">-</button>
-                        <input type="text" id="input" value="0" class="box">
-                        <button class="button_plus" onclick="povecanje()">+</button>
-                       
+                        <p>Pomfrit</p>
+                        <p>2,35 kn</p>
+                        <p class="button-za-uvecavanje">
 
 
-
-                    </p>
-                    </p>
-                    <p>
-                        <button class="button-1"
-                                id="ukloni"
-                                onclick="SomeDeleteRowFunction(this)">
-                            UKLONI
-                        </button>
-                    </p>
-                </div>
-                <div class="redak-tablice">
-                    <p>Riža</p>
-                    <p>3,75 kn</p>
-                    <p class="button-za-uvecavanje">
-                       
-
-                        <button class="button_plus" onclick="smanjivanje()">-</button>
-                        <input type="text" id="input" value="0" class="box">
-                        <button class="button_plus" onclick="povecanje()">+</button>
-                    </p>
-                    </p>
-
-                    <p>
-                        <button class="button-1"
-                                id="ukloni"
-                                onclick="SomeDeleteRowFunction(this)">
-                            UKLONI
-                        </button>
-                    </p>
-                </div>
-                <div class="redak-tablice">
-                    <p>Mandarina</p>
-                    <p>1,75 kn</p>
-                    <p class="button-za-uvecavanje">
-                       
-                        <button class="button_plus" onclick="smanjivanje()">-</button>
-                        <input type="text" id="input" value="0" class="box">
-                        <button class="button_plus" onclick="povecanje()">+</button>
+                            <button class="button_plus" onclick="smanjivanje()">-</button>
+                            <input type="text" id="input" value="0" class="box">
+                            <button class="button_plus" onclick="povecanje()">+</button>
 
 
-                    </p>
-                    </p>
 
-                    <p>
-                        <button class="button-1"
-                                id="ukloni"
-                                onclick="SomeDeleteRowFunction(this)">
-                            UKLONI
-                        </button>
-                    </p>
-                </div>*@
+
+                        </p>
+                        </p>
+                        <p>
+                            <button class="button-1"
+                                    id="ukloni"
+                                    onclick="SomeDeleteRowFunction(this)">
+                                UKLONI
+                            </button>
+                        </p>
+                    </div>
+                    <div class="redak-tablice">
+                        <p>Riža</p>
+                        <p>3,75 kn</p>
+                        <p class="button-za-uvecavanje">
+
+
+                            <button class="button_plus" onclick="smanjivanje()">-</button>
+                            <input type="text" id="input" value="0" class="box">
+                            <button class="button_plus" onclick="povecanje()">+</button>
+                        </p>
+                        </p>
+
+                        <p>
+                            <button class="button-1"
+                                    id="ukloni"
+                                    onclick="SomeDeleteRowFunction(this)">
+                                UKLONI
+                            </button>
+                        </p>
+                    </div>
+                    <div class="redak-tablice">
+                        <p>Mandarina</p>
+                        <p>1,75 kn</p>
+                        <p class="button-za-uvecavanje">
+
+                            <button class="button_plus" onclick="smanjivanje()">-</button>
+                            <input type="text" id="input" value="0" class="box">
+                            <button class="button_plus" onclick="povecanje()">+</button>
+
+
+                        </p>
+                        </p>
+
+                        <p>
+                            <button class="button-1"
+                                    id="ukloni"
+                                    onclick="SomeDeleteRowFunction(this)">
+                                UKLONI
+                            </button>
+                        </p>
+                    </div>*@
             </div>
         </div>
         <div class="cart-container-bottom">
             <div class="ime-menze">
-                <p>Menza-Građevinski fakultet</p>
+                <p>Menza: @Context.Session.GetString("currentMenzaName")</p>
             </div>
             <div class="cart-total">
-                <label>Ukupni račun:&nbsp </label>
+                <label>Ukupni račun: @ViewBag.total kn </label>
                 <!-- <p class="vrijednost-računa">0 kn</p> -->
-
-                <input type="text" id="total" value="0" disabled="" class="box">
+                @*<input type="text" id="total" value="0" disabled="" class="box">*@
 
             </div>
         </div>
     </div>
-    <button class="button-2" type="button">ZAKLJUČI NARUDŽBU</button>
+    <a class="button-2" type="button">ZAKLJUČI NARUDŽBU</a>
 
     <script src="/js/kosarica-scripts.js"></script>
 </body>

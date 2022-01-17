@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace MENSA.Controllers
 {
@@ -25,19 +26,34 @@ namespace MENSA.Controllers
             var cart = SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
 
-            //ViewBag.total = cart.Sum(item => item.Menu.Price * item.Quantity);
+            if (cart != null)
+            {
+                ViewBag.total = cart.Sum(item => item.Menu.Price * item.Quantity);
+
+            }
+            else {
+                ViewBag.total = 0;
+            }
+            
             return View();
         }
 
         public IActionResult Buy(int id)
         {
-            Menu meal  = _db.Menu.Where(a => a.Id == id).FirstOrDefault();
-            MenuViewModel mealVM = new MenuViewModel();
-            mealVM.Menu = meal;
+            //Menu meal  = _db.Menu.Where(a => a.Id == id).FirstOrDefault();
+            //MenuViewModel mealVM = new MenuViewModel();
+            //mealVM.Menu = meal;
 
+
+            
             if (SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart") == null)
             {
+                Menu meal = _db.Menu.Where(a => a.Id == id).FirstOrDefault();
+                MenuViewModel mealVM = new MenuViewModel();
+                mealVM.Menu = meal;
+
                 List<MenuViewModel> cart = new List<MenuViewModel>();
+                mealVM.Quantity = 1;
                 cart.Add(mealVM);
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
@@ -47,16 +63,23 @@ namespace MENSA.Controllers
                 int index = isExist(id.ToString());
                 if (index != -1)
                 {
-                    //cart[index].Quantity++;
+                    cart[index].Quantity++;
                 }
                 else
                 {
+                    Menu meal = _db.Menu.Where(a => a.Id == id).FirstOrDefault();
+                    MenuViewModel mealVM = new MenuViewModel();
+                    mealVM.Menu = meal;
+
+                    mealVM.Quantity = 1;
                     cart.Add(mealVM);
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
-            //return RedirectToAction("Select_Menu", "SelectMenza");
-            return RedirectToAction("Index");
+            
+            var menzaId = HttpContext.Session.GetInt32("currentMenzaId");
+            return RedirectToAction("Select_Menu", "SelectMenza", new {ID = menzaId });
+            
         }
 
         
