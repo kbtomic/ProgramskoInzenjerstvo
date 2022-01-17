@@ -28,20 +28,33 @@ namespace MENSA.Controllers
         }
 
         
-
+        [HttpGet]
         public IActionResult Select_menu(int ID)
         {
+          
 
-            return View();
+            var menzaMeals = (from mm in _db.Menza_Menu
+                              join me in _db.Menu on mm.MenuId equals me.Id
+                              where mm.MenzaId == ID
+                              select new Menu
+                              {
+                                  Id = me.Id,
+                                  Name = me.Name,
+                                  PicturePath = me.PicturePath,
+                                  Price = me.Price
+                              }).ToList();
+
+
+            return View(menzaMeals);
         }
 
-        public IActionResult pregled_kosarice(int ID)
+        public IActionResult pregled_kosarice()
         {
 
             return View();
         }
 
-        public IActionResult Orders()
+        public IActionResult Orders(int ID)
         {
             return View();
         }

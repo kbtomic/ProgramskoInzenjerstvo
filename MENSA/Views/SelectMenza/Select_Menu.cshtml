@@ -1,4 +1,7 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager;
+@model IEnumerable<MENSA.Models.Menu>
+
 <!DOCTYPE html>
 <html lagn="en">
 <head>
@@ -49,28 +52,39 @@
 
             </div>
             <div class="list-wrapper">
-                <div class="box lightblue">
-                    <h3>Pomfrit</h3>
+                @foreach (var obj in Model)
+                {
+                    <div class="box lightblue">
+                        <h3>@obj.Name</h3>
 
-                    <img class="article-img" src="/assets/pomfrit.jpg" alt="4 kn">
-                    <p>4 kn</p>
-                    <a href="" class="buying">BUY NOW</a>
+                        <img class="article-img" src="@("/assets/"+@obj.PicturePath)" alt="6 kn">
+                        <p>@obj.Price</p>
+                        <a href="" class="buying">BUY NOW</a>
+                    </div>
+                }
 
-                </div>
-                <div class="box lightblue">
-                    <h3>Bolognese</h3>
+                @*<div class="box lightblue">
+            <h3>Pomfrit</h3>
 
-                    <img class="article-img" src="/assets/bolognese.jfif" alt="6 kn">
-                    <p>6 kn</p>
-                    <a href="" class="buying">BUY NOW</a>
-                </div>
-                <div class="box lightblue">
-                    <h3>Pizza</h3>
+            <img class="article-img" src="/assets/pomfrit.jpg" alt="4 kn">
+            <p>4 kn</p>
+            <a href="" class="buying">BUY NOW</a>
 
-                    <img class="article-img" src="/assets/pizza.jpg" alt="5 kn">
-                    <p>5 kn</p>
-                    <a href="" class="buying">BUY NOW</a>
-                </div>
+        </div>
+        <div class="box lightblue">
+            <h3>Bolognese</h3>
+
+            <img class="article-img" src="/assets/bolognese.jfif" alt="6 kn">
+            <p>6 kn</p>
+            <a href="" class="buying">BUY NOW</a>
+        </div>
+        <div class="box lightblue">
+            <h3>Pizza</h3>
+
+            <img class="article-img" src="/assets/pizza.jpg" alt="5 kn">
+            <p>5 kn</p>
+            <a href="" class="buying">BUY NOW</a>
+        </div>*@
             </div>
             <div class="box lightgray">
                 <h2> Radno vrijeme menze </h2>
