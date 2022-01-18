@@ -8,15 +8,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace MENSA.Controllers
 {
     public class CartController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public CartController(ApplicationDbContext db)
+        public CartController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
+            this.userManager = userManager;
             _db = db;
         }
 
@@ -90,6 +93,62 @@ namespace MENSA.Controllers
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> ConfirmOrder()
+        {
+            List<MenuViewModel> cart = SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart");
+
+            if (cart != null)
+            {
+
+                var currentUser = await userManager.GetUserAsync(User);
+                NewNarudzba newNarudzba = new NewNarudzba {Ready = false, Delivered = false, ApplicationUser = currentUser,StudentId = currentUser.Id };
+
+                List<Menu> MenuList = new List<Menu>();
+                foreach (var item in cart)
+                {
+                    for (int i = 0; i < item.Quantity; i++)
+                    {
+                        MenuList.Add(item.Menu);
+                    
+                    }
+
+                }
+
+                var listSize = MenuList.Count;
+
+                
+                
+                newNarudzba.Menu1 = MenuList[0];
+
+                if (listSize <= 4)
+                {
+                    switch (listSize)
+                    {
+                        case 4:
+                            newNarudzba.Menu4 = MenuList[3];
+                            goto case 3;
+                        case 3:
+                            newNarudzba.Menu3 = MenuList[2];
+                            goto case 2;
+                        case 2:
+                            newNarudzba.Menu2 = MenuList[1];
+                            break;
+
+
+                    }
+                }
+                
+
+                
+
+                _db.NewNarudzba.Add(newNarudzba);
+                cart.Clear();
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            }
+            
+            return View("Index");
         }
 
         private int isExist(string id)
