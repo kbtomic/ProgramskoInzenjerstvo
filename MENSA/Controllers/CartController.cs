@@ -101,49 +101,31 @@ namespace MENSA.Controllers
 
             if (cart != null)
             {
+                var currentMenzaId = HttpContext.Session.GetInt32("currentMenzaId");
+                var currentMenza = _db.Menza.Find(currentMenzaId);
 
                 var currentUser = await userManager.GetUserAsync(User);
-                NewNarudzba newNarudzba = new NewNarudzba {Ready = false, Delivered = false, ApplicationUser = currentUser,StudentId = currentUser.Id };
+                NewNarudzba newNarudzba = new NewNarudzba {MenzaId = (int)currentMenzaId ,Menza = currentMenza,Ready = false, Delivered = false, ApplicationUser = currentUser,StudentId = currentUser.Id };
 
-                List<Menu> MenuList = new List<Menu>();
+                _db.NewNarudzba.Add(newNarudzba);
+                _db.SaveChanges();
+
+                int narudzbaId = newNarudzba.Id;
+
                 foreach (var item in cart)
                 {
                     for (int i = 0; i < item.Quantity; i++)
                     {
-                        MenuList.Add(item.Menu);
-                    
+
+                        NewModel newModel = new NewModel { NewNarudzbaId = narudzbaId, MenuId = item.Menu.Id, NewNarudzba = newNarudzba, Menu = item.Menu };
+
+                        _db.NewModel.Add(newModel);
+                        _db.SaveChanges();
                     }
 
                 }
 
-                var listSize = MenuList.Count;
-
                 
-                
-                /*newNarudzba.Menu1 = MenuList[0];
-
-                if (listSize <= 4)
-                {
-                    switch (listSize)
-                    {
-                        case 4:
-                            newNarudzba.Menu4 = MenuList[3];
-                            goto case 3;
-                        case 3:
-                            newNarudzba.Menu3 = MenuList[2];
-                            goto case 2;
-                        case 2:
-                            newNarudzba.Menu2 = MenuList[1];
-                            break;
-
-
-                    }
-                }
-                
-                */
-                
-
-                _db.NewNarudzba.Add(newNarudzba);
                 cart.Clear();
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }

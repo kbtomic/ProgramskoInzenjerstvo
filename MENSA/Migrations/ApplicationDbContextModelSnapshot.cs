@@ -216,6 +216,9 @@ namespace MENSA.Migrations
                     b.Property<bool>("Delivered")
                         .HasColumnType("bit");
 
+                    b.Property<int>("MenzaId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Ready")
                         .HasColumnType("bit");
 
@@ -223,6 +226,8 @@ namespace MENSA.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MenzaId");
 
                     b.HasIndex("StudentId");
 
@@ -499,11 +504,19 @@ namespace MENSA.Migrations
 
             modelBuilder.Entity("MENSA.Models.NewNarudzba", b =>
                 {
+                    b.HasOne("MENSA.Models.Menza", "Menza")
+                        .WithMany("NewNarudzba")
+                        .HasForeignKey("MenzaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MENSA.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("NewNarudzba")
                         .HasForeignKey("StudentId");
 
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Menza");
                 });
 
             modelBuilder.Entity("MENSA.Models.Zaposlenik_Menza", b =>
@@ -589,6 +602,8 @@ namespace MENSA.Migrations
             modelBuilder.Entity("MENSA.Models.Menza", b =>
                 {
                     b.Navigation("Narudzba");
+
+                    b.Navigation("NewNarudzba");
                 });
 
             modelBuilder.Entity("MENSA.Models.NewNarudzba", b =>

@@ -16,5 +16,6 @@ namespace MENSA.Models
         public string PicturePath { get; set; }
 
         public ICollection<Narudzba> Narudzba { get; set; }
+        public ICollection<NewNarudzba> NewNarudzba { get; set; }
     }
 }

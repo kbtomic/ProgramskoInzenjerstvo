@@ -2,7 +2,7 @@
 
 namespace MENSA.Migrations
 {
-    public partial class AddNewModelToDatabase : Migration
+    public partial class addNewModelToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,6 +54,13 @@ namespace MENSA.Migrations
                 name: "Menu4Id",
                 table: "NewNarudzba");
 
+            migrationBuilder.AddColumn<int>(
+                name: "MenzaId",
+                table: "NewNarudzba",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.CreateTable(
                 name: "NewModel",
                 columns: table => new
@@ -81,6 +88,11 @@ namespace MENSA.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_NewNarudzba_MenzaId",
+                table: "NewNarudzba",
+                column: "MenzaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_NewModel_MenuId",
                 table: "NewModel",
                 column: "MenuId");
@@ -89,12 +101,32 @@ namespace MENSA.Migrations
                 name: "IX_NewModel_NewNarudzbaId",
                 table: "NewModel",
                 column: "NewNarudzbaId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_NewNarudzba_Menza_MenzaId",
+                table: "NewNarudzba",
+                column: "MenzaId",
+                principalTable: "Menza",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_NewNarudzba_Menza_MenzaId",
+                table: "NewNarudzba");
+
             migrationBuilder.DropTable(
                 name: "NewModel");
+
+            migrationBuilder.DropIndex(
+                name: "IX_NewNarudzba_MenzaId",
+                table: "NewNarudzba");
+
+            migrationBuilder.DropColumn(
+                name: "MenzaId",
+                table: "NewNarudzba");
 
             migrationBuilder.AddColumn<int>(
                 name: "Menu1Id",

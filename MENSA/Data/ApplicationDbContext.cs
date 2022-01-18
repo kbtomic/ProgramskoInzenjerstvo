@@ -28,5 +28,6 @@ namespace MENSA.Data
         public DbSet<Narudzba_Menu> Narudzba_Menu { get; set; }
         public DbSet<Menza_Menu> Menza_Menu { get; set; }
         public DbSet<NewNarudzba> NewNarudzba { get; set; }
+        public DbSet<NewModel> NewModel { get; set; }
     }
 }
