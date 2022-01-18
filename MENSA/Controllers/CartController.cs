@@ -120,7 +120,7 @@ namespace MENSA.Controllers
 
                 
                 
-                newNarudzba.Menu1 = MenuList[0];
+                /*newNarudzba.Menu1 = MenuList[0];
 
                 if (listSize <= 4)
                 {
@@ -140,7 +140,7 @@ namespace MENSA.Controllers
                     }
                 }
                 
-
+                */
                 
 
                 _db.NewNarudzba.Add(newNarudzba);

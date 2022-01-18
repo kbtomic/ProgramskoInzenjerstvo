@@ -16,14 +16,12 @@ namespace MENSA.Models
         public bool Ready { get; set; }
         public bool Delivered { get; set; }
 
-        public Menu Menu1 { get; set; }
-        public Menu Menu2 { get; set; }
-        public Menu Menu3 { get; set; }
-        public Menu Menu4 { get; set; }
-
 
         public string StudentId { get; set; }
         [ForeignKey("StudentId")]
         public ApplicationUser ApplicationUser { get; set; }
+
+
+        public ICollection<NewModel> NewModel { get; set; }
     }
 }
