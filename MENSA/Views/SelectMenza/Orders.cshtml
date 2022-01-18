@@ -1,197 +1,234 @@
+@model IEnumerable<MENSA.ViewModels.OrderViewModel>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pregled narudžbi</title>
     <link rel="stylesheet" href="styles/font-awesome.min.css" />
     <link rel="stylesheet" href="/css/orders_style.css" />
-  </head>
-  <body>
+</head>
+<body>
     <header class="header">
-      <div class="title-logo">
-          <h1 class="title">MENSA</h1>
-          <img class="header-logo" src="/assets/burger.png" alt="Logo" />
-      </div>
-      <div class="user-wrapper">
-          <div class="user-id">@User.Identity.Name</div>
-          <div class="dropdown">
-              <img class="header-user" src="/assets/user.png" alt="User settings" />
-              <div class="dropdown-menu">
-                  <div class="logout-wrap">
-                      <img class="logout" src="/assets/logout2.png" alt="Log out" />
-                  </div>
-                  <button type="submit" style="width: auto" class="login-button">
-                      Odjavi se
-                  </button>
-              </div>
-          </div>
-      </div>
-  </header>
+        <div class="title-logo">
+            <h1 class="title">MENSA</h1>
+            <img class="header-logo" src="/assets/burger.png" alt="Logo" />
+        </div>
+        <div class="user-wrapper">
+            <div class="user-id">@User.Identity.Name</div>
+            <div class="dropdown">
+                <img class="header-user" src="/assets/user.png" alt="User settings" />
+                <div class="dropdown-menu">
+                    <div class="logout-wrap">
+                        <img class="logout" src="/assets/logout2.png" alt="Log out" />
+                    </div>
+                    <button type="submit" style="width: auto" class="login-button">
+                        Odjavi se
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <main>
-      <h1 class="title-2">PREGLED NARUDŽBI</h1>
+        <h1 class="title-2">PREGLED NARUDŽBI</h1>
 
-      <div id="cards-container">
-        <article class="card">
-          <i class="fa fa-times delete-button clickable-icon"></i>
-          <h3>
-            <span class="order-number">Narudžba broj: 23</span>
-          </h3>
+        <div id="cards-container">
+            @foreach (var obj in Model)
+            {
+            <article class="card">
+                <i class="fa fa-times delete-button clickable-icon"></i>
+                <h3>
+                    <span class="order-number">Narudžba broj: @obj.Order.Id</span>
+                </h3>
 
-          <table>
-            <thead>
-              <tr>
-                <th>PROIZVOD&#160</th>
-                <th>KOLIČINA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Pomfrit</td>
-                <td>2</td>
-              </tr>
-            </tbody>
-          </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PROIZVOD</th>
+                            <th>KOLIČINA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in obj.menuVM)
+                        {
+                            <tr>
+                                <td>@item.Menu.Name</td>
+                                <td>@item.Quantity</td>
+                            </tr>
+                        }
 
-          <div class="checkbox-container">
-            <input type="checkbox" id="checkbox" name="checkbox" />
-            <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
-          </div>
-        </article>
+                    </tbody>
+                </table>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="checkbox" name="checkbox" />
+                    <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
+                </div>
+            </article>
+            }
 
-        <article class="card">
-          <i class="fa fa-times delete-button clickable-icon"></i>
-          <h3>
-            <span class="order-number">Narudžba broj: 24</span>
-          </h3>
 
-          <table>
-            <thead>
-              <tr>
-                <th>PROIZVOD</th>
-                <th>KOLIČINA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Pomfrit</td>
-                <td>2</td>
-              </tr>
-            </tbody>
-          </table>
+                    @*<article class="card">
+                    <i class="fa fa-times delete-button clickable-icon"></i>
+                    <h3>
+                        <span class="order-number">Narudžba broj: 23</span>
+                    </h3>
 
-          <div class="checkbox-container">
-            <input type="checkbox" id="checkbox" name="checkbox" />
-            <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
-          </div>
-        </article>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PROIZVOD&#160</th>
+                                <th>KOLIČINA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pomfrit</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-        <article class="card">
-          <i class="fa fa-times delete-button clickable-icon"></i>
-          <h3>
-            <span class="order-number">Narudžba broj: 25</span>
-          </h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="checkbox" name="checkbox" />
+                        <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
+                    </div>
+                </article>
 
-          <table>
-            <thead>
-              <tr>
-                <th>PROIZVOD</th>
-                <th>KOLIČINA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Sok od naranče</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>Banana</td>
-                <td>2</td>
-              </tr>
-            </tbody>
-          </table>
+                <article class="card">
+                    <i class="fa fa-times delete-button clickable-icon"></i>
+                    <h3>
+                        <span class="order-number">Narudžba broj: 24</span>
+                    </h3>
 
-          <div class="checkbox-container">
-            <input type="checkbox" id="checkbox" name="checkbox" />
-            <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
-          </div>
-        </article>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PROIZVOD</th>
+                                <th>KOLIČINA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pomfrit</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-        <article class="card">
-          <i class="fa fa-times delete-button clickable-icon"></i>
-          <h3>
-            <span class="order-number">Narudžba broj: 26</span>
-          </h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="checkbox" name="checkbox" />
+                        <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
+                    </div>
+                </article>
 
-          <table>
-            <thead>
-              <tr>
-                <th>PROIZVOD</th>
-                <th>KOLIČINA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Pomfrit</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Meso</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>Sladoled</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>Sladoled</td>
-                <td>3</td>
-              </tr>
-             
-            </tbody>
-          </table>
+                <article class="card">
+                    <i class="fa fa-times delete-button clickable-icon"></i>
+                    <h3>
+                        <span class="order-number">Narudžba broj: 25</span>
+                    </h3>
 
-          <div class="checkbox-container">
-            <input type="checkbox" id="checkbox" name="checkbox" />
-            <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
-          </div>
-        </article>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PROIZVOD</th>
+                                <th>KOLIČINA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sok od naranče</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Banana</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-        <article class="card">
-          <i class="fa fa-times delete-button clickable-icon"></i>
-          <h3>
-            <span class="order-number">Narudžba broj: 27</span>
-          </h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="checkbox" name="checkbox" />
+                        <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
+                    </div>
+                </article>
 
-          <table>
-            <thead>
-              <tr>
-                <th>PROIZVOD&#160</th>
-                <th>KOLIČINA</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Pomfrit</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Voda</td>
-                <td>1</td>
-              </tr>
-            </tbody>
-          </table>
+                <article class="card">
+                    <i class="fa fa-times delete-button clickable-icon"></i>
+                    <h3>
+                        <span class="order-number">Narudžba broj: 26</span>
+                    </h3>
 
-          <div class="checkbox-container">
-            <input type="checkbox" id="checkbox" name="checkbox" />
-            <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
-          </div>
-        </article>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PROIZVOD</th>
+                                <th>KOLIČINA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pomfrit</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Meso</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Sladoled</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>Sladoled</td>
+                                <td>3</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="checkbox" name="checkbox" />
+                        <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <i class="fa fa-times delete-button clickable-icon"></i>
+                    <h3>
+                        <span class="order-number">Narudžba broj: 27</span>
+                    </h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PROIZVOD&#160</th>
+                                <th>KOLIČINA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pomfrit</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>Voda</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="checkbox" name="checkbox" />
+                        <label class="checkbox-label" for="checkbox">Narudžba spremna</label>
+                    </div>
+                </article>*@
+            </div>
     </main>
 
     <script src="/js/orders.js"></script>
     <script src="~/js/select-menza-screen.js"></script>
-  </body>
+</body>
 </html>
