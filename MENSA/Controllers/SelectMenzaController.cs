@@ -14,11 +14,12 @@ namespace MENSA.Controllers
 {
     public class SelectMenzaController : Controller
     {
-
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext _db;
 
-        public SelectMenzaController(ApplicationDbContext db)
+        public SelectMenzaController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
+            this.userManager = userManager;
             _db = db;
         }
 
@@ -54,9 +55,48 @@ namespace MENSA.Controllers
 
         
 
-        public IActionResult Orders(int ID)
+        public async Task<IActionResult> Orders(int ID)
         {
-            return View();
+            var currentOrders = _db.NewNarudzba.Where(o => o.MenzaId == ID); //dohvaca narudzbe za menzu
+
+            List<OrderViewModel> ordersVM = new List<OrderViewModel>(); //ovo cemo poslati viewu
+            
+            int i = 0;
+
+            foreach (var item in currentOrders)
+            {
+                var orderUser = await userManager.FindByIdAsync(item.StudentId);
+                item.ApplicationUser = orderUser; //gohvaca korisnika narudzbe ------------------------------>ne radi, triba popravit nekako
+
+                ordersVM.Add(new OrderViewModel {Order = item });
+                ordersVM[i].menuVM = new List<MenuViewModel>();
+
+                var newModels = _db.NewModel.Where(m => m.NewNarudzbaId == item.Id); //dohvaca sva jela za tu narudzbu
+
+                foreach (var obj in newModels)
+                {
+                    var meal = _db.Menu.Where(m => m.Id == obj.MenuId).FirstOrDefault();
+                    MenuViewModel tempMenuVm = new MenuViewModel { Menu = meal, Quantity = 1 };
+
+                    bool containsItem = ordersVM[i].menuVM.Any(x => x.Menu.Id == meal.Id);
+
+                    if (containsItem == true)
+                    {
+                        int index = ordersVM[i].menuVM.FindIndex(x => x.Menu.Id == meal.Id);
+                        ordersVM[i].menuVM[index].Quantity++;
+                    }
+                    else {
+                        ordersVM[i].menuVM.Add(tempMenuVm);
+
+                    }
+
+                    
+                }
+                i++;
+            }
+            
+
+            return View(ordersVM);
         }
 
     }

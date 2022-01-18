@@ -117,7 +117,7 @@ namespace MENSA.Controllers
                     for (int i = 0; i < item.Quantity; i++)
                     {
 
-                        NewModel newModel = new NewModel { NewNarudzbaId = narudzbaId, MenuId = item.Menu.Id, NewNarudzba = newNarudzba, Menu = item.Menu };
+                        NewModel newModel = new NewModel {  NewNarudzbaId = narudzbaId, MenuId = item.Menu.Id };
 
                         _db.NewModel.Add(newModel);
                         _db.SaveChanges();
