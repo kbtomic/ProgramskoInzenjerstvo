@@ -86,11 +86,12 @@ namespace MENSA.Controllers
             var menzaToAdd = _db.Menza.FromSqlRaw("SELECT * FROM Menza WHERE Name=@Name", menzaParameter).FirstOrDefault(); //ID menze
 
             var obj = new Menza_Menu { Menu = menuToAdd, Menza = menzaToAdd, MenuId=menuToAdd.Id, MenzaId=menzaToAdd.Id, Availability = true };
-            var commandText = "Insert Into [Menza_Menu](MenzaId, MenuId)values(@menzaId, @menuId)";
+            var commandText = "Insert Into [Menza_Menu](MenzaId, MenuId, Availability)values(@menzaId, @menuId, @availability)";
             var menzaIdparamater = new SqlParameter("@menzaId", obj.MenzaId);
             var menuIdparamater = new SqlParameter("@menuId", obj.MenuId);
+            var availabilityParamater = new SqlParameter("@availability", obj.Availability);
 
-            _db.Database.ExecuteSqlRaw(commandText, menzaIdparamater, menuIdparamater);
+            _db.Database.ExecuteSqlRaw(commandText, menzaIdparamater, menuIdparamater, availabilityParamater);
             //_db.Menza_Menu.Add(obj);
             //_db.SaveChanges();
 
