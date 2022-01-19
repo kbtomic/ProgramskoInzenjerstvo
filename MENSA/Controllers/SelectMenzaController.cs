@@ -66,7 +66,7 @@ namespace MENSA.Controllers
             foreach (var item in currentOrders)
             {
                 var orderUser = await userManager.FindByIdAsync(item.StudentId);
-                item.ApplicationUser = orderUser; //gohvaca korisnika narudzbe ------------------------------>ne radi, triba popravit nekako
+                item.ApplicationUser = orderUser; //dohvaca korisnika narudzbe ------------------------------>ne radi, triba popravit nekako
 
                 ordersVM.Add(new OrderViewModel {Order = item });
                 ordersVM[i].menuVM = new List<MenuViewModel>();

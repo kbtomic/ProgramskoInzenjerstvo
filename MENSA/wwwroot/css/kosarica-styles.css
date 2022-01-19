@@ -105,6 +105,7 @@ body {
     position: absolute;
     right: 5%;
     bottom: 5%;
+    text-decoration: none;
 }
 
 .header-wrapper {
@@ -206,6 +207,7 @@ body {
     margin-right: 50px;
     text-align: center;
     transition: color 100ms;
+    text-decoration: none;
 }
 
     .button-1:hover,
@@ -281,6 +283,97 @@ body {
 .logout {
     height: 15px;
     width: 15px;
+    color: white;
+    cursor: pointer;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-size: 100px;
+    padding: 0px;
+    margin-bottom: 20px;
+    border: 0px;
+    position: sticky;
+    top: 0;
+    background-color: #00003E;
+}
+
+.header-logo {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    animation: rotate 4s infinite;
+}
+
+.title-logo {
+    display: flex;
+    margin: 0;
+}
+
+.user-wrapper {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.header-user {
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    cursor: pointer;
+}
+.dropdown {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.dropdown-menu {
+    position: absolute;
+    margin: 45px 10px;
+    background-color: #4294ff;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: end;
+    color: white;
+    padding: 10px;
+    width: 120px;
+    height: 20px;
+    right: 0;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    display: none;
+}
+
+.logout {
+    height: 15px;
+    width: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.logout-wrap {
+    display: inline;
+    position: absolute;
+    margin: 3px -20px;
+}
+
+.user-id {
+    font-size: 20px;
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.login-button {
+    border: none;
+    display: flex;
+    padding-left: 35px;
+    padding-top: 1px;
+    background-color: #4294ff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
     cursor: pointer;
 }
