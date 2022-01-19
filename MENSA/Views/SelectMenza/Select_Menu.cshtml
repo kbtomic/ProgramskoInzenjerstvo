@@ -36,7 +36,7 @@
         <article class="article-wrapper">
             <h1 class="article-title">Dnevni jelovnik menze</h1>
         </article>
-        <div class=main-div>
+        <div class="main-div">
             <div class="menu-wrapper">
 
                 <div class="box lightgray">
@@ -48,9 +48,6 @@
                         <li>Sokić</li>
                     </ul>
                 </div>
-
-
-
             </div>
             <div class="list-wrapper">
                 @foreach (var obj in Model)
@@ -60,7 +57,7 @@
 
                         <img class="article-img" src="@("/assets/"+@obj.PicturePath)" alt="6 kn">
                         <p>@obj.Price kn</p>
-                        <a asp-controller="cart" asp-action="buy" asp-route-id="@obj.Id" class="buying">Add to cart</a>
+                        <a asp-controller="cart" asp-action="buy" asp-route-id="@obj.Id" class="buying">Dodaj u košaricu</a>
                     </div>
                 }
 

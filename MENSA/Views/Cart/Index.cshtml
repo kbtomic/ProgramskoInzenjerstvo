@@ -12,15 +12,15 @@
 </head>
 <body>
 
-    <header class="header">
+    <!--<header class="header">
         <div class="title-logo">
             <h1 class="title">MENSA</h1>
             <img class="header-logo" src="/assets/burger.png" alt="Logo" />
         </div>
-        @if (signInManager.IsSignedIn(User))@*@User.Identity.Name triba dodat *@
+        <!--
         {
             <div class="user-wrapper">
-                <div class="user-id">@User.Identity.Name</div>
+                <div class="user-id"></div>
                 <div class="dropdown">
                     <img class="header-user"
                          src="/assets/user.png"
@@ -36,6 +36,25 @@
                 </div>
             </div>
         }
+    </header>-->
+    <header class="header">
+        <div class="title-logo">
+            <h1 class="title">MENSA</h1>
+            <img class="header-logo" src="/assets/burger.png" alt="Logo">
+        </div>
+        <div class="user-wrapper">
+            <div class="user-id">@User.Identity.Name</div>
+            <div class="dropdown">
+                <img class="header-user" src="/assets/user.png" alt="User settings">
+                <div class="dropdown-menu">
+                    <div class="logout-wrap">
+                        <img class="logout" src="/assets/logout2.png" alt="Log out">
+                    </div>
+                    <form method="post" asp-action="Logout" asp-controller="LogIn">
+                        <button type="submit" style="width:auto" class="login-button">Odjavi se</button>
+                    </form>
+                </div>
+            </div>
     </header>
     <h2 class="naslov">PREGLED TVOJE KOŠARICE</h2>
     <div class="cart-container">
@@ -69,7 +88,7 @@
                         </div>
                     }
                 }
-                
+
             </div>
         </div>
         <div class="cart-container-bottom">
@@ -78,7 +97,7 @@
             </div>
             <div class="cart-total">
                 <label>Ukupni račun: @ViewBag.total kn </label>
-                
+
 
             </div>
         </div>
