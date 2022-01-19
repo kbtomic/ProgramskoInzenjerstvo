@@ -50,7 +50,7 @@ namespace MENSA.Controllers
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, model.userRole);
-                    return View();
+                    return View("Admin_functionalities");
                 }
 
                 foreach (var error in result.Errors)
