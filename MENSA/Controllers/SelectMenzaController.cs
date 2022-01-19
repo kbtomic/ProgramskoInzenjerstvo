@@ -40,7 +40,7 @@ namespace MENSA.Controllers
 
             var menzaMeals = (from mm in _db.Menza_Menu
                               join me in _db.Menu on mm.MenuId equals me.Id
-                              where mm.MenzaId == ID
+                              where mm.MenzaId == ID && mm.Availability == true
                               select new Menu
                               {
                                   Id = me.Id,
