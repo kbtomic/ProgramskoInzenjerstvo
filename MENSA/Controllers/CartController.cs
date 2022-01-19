@@ -23,7 +23,7 @@ namespace MENSA.Controllers
             _db = db;
         }
 
-
+        [Route("Index")]
         public IActionResult Index()
         {
             var cart = SessionHelper.GetObjectFromJson<List<MenuViewModel>>(HttpContext.Session, "cart");
@@ -124,14 +124,25 @@ namespace MENSA.Controllers
                     }
 
                 }
-
-                
+                float priceTotal = cart.Sum(item => item.Menu.Price * item.Quantity);
+                OrderNumberViewModel orderNumberVM = new OrderNumberViewModel { Narudzba = newNarudzba, Price = priceTotal };
                 cart.Clear();
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+
+                return View("OrderNumber", orderNumberVM);
             }
-            
+
             return View("Index");
         }
+
+        
+        public IActionResult OrderNumber(OrderNumberViewModel currentNarudzba)
+        {
+            
+            
+            return View(currentNarudzba);
+        }
+
 
         private int isExist(string id)
         {

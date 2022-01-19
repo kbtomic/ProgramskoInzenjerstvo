@@ -1,3 +1,5 @@
+@model MENSA.ViewModels.OrderNumberViewModel
+
 <!DOCTYPE html>
 <html lagn="en">
 <head>
@@ -8,7 +10,7 @@
     <title>MENSA</title>
 </head>
 <body>
-    
+
     <header class="header">
         <div class="title-logo">
             <h1 class="title">MENSA</h1>
@@ -32,38 +34,39 @@
         <article class="article-wrapper">
             <h1 class="article-title">Pregled računa</h1>
         </article>
-        <div class= main-div>
-            
+        <div class=main-div>
+
             <div class="next list-wrapper">
                 <div class="boxing lightblue">
-                    <a href=""class="back">GO BACK</a>
+                    <a href="" class="back">GO BACK</a>
                 </div>
-                   
+
             </div>
             <div class="menu-wrapper">
-              
+                @if (Model != null)
+                {
                 <div class="box2 lightgray">
-                    <p >Broj narudžbe: xxxxxxxx</p>
-                    <p >Naručitelj:xxxxxxxxxx</p>
-                    <p >Ime menze: xxxxxxxxx</p>
-                    <p >Cijena:xxxxxx</p>
-                    <p >Stanje pripreme :xx</p>
+                    <p>Broj narudžbe: @Model.Narudzba.Id</p>
+                    <p>Naručitelj: @Model.Narudzba.ApplicationUser.Email</p>
+                    <p>Ime menze: @Model.Narudzba.Menza.Name</p>
+                    <p>Cijena: @Model.Price</p>
+                    <p>Stanje pripreme: U pripremi</p>
                 </div>
-              
+                }
 
 
             </div>
             <div class="next list-wrapper">
                 <div class="boxing lightblue">
-                    <a href=""class="back">CONTINUE</a>
+                    <a href="" class="back">CONTINUE</a>
                 </div>
-                   
-            </div>
-            
-        </div> 
 
-        
-        
+            </div>
+
+        </div>
+
+
+
     </main>
 
     <script src="~/js/select-menza-screen.js"></script>

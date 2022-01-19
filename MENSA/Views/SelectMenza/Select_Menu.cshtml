@@ -58,7 +58,7 @@
                         <h3>@obj.Name</h3>
 
                         <img class="article-img" src="@("/assets/"+@obj.PicturePath)" alt="6 kn">
-                        <p>@obj.Price</p>
+                        <p>@obj.Price kn</p>
                         <a asp-controller="cart" asp-action="buy" asp-route-id="@obj.Id" class="buying">Add to cart</a>
                     </div>
                 }
