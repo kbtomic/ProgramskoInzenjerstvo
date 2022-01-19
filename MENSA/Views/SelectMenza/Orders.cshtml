@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pregled narudžbi</title>
-    <link rel="stylesheet" href="styles/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/css/orders_style.css" />
 </head>
 <body>
@@ -24,9 +24,9 @@
                     <div class="logout-wrap">
                         <img class="logout" src="/assets/logout2.png" alt="Log out" />
                     </div>
-                    <button type="submit" style="width: auto" class="login-button">
-                        Odjavi se
-                    </button>
+                    <form method="post" asp-action="Logout" asp-controller="LogIn">
+                        <button type="submit" style="width:auto" class="login-button">Odjavi se</button>
+                    </form>
                 </div>
             </div>
         </div>
