@@ -40,6 +40,7 @@
 .user-wrapper {
     display: flex;
     justify-content: end;
+    align-items: center;
 }
 
 .header-user {
@@ -215,4 +216,9 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
     cursor: pointer;
+}
+.user-id {
+    font-size: 20px;
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
